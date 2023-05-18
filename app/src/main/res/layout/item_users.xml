@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_item_users_contract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@id/group_item_users_expand"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_item_users_profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_item_users_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_users_profile"
+            app:layout_constraintStart_toEndOf="@id/iv_item_users_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_item_users_profile"
+            tools:text="홍길동1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_item_users_expand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/group_item_users_contract"
+        tools:visibility="visible">
+
+        <View
+            android:id="@+id/view_item_users_empty"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_item_users_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/teal_700"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_users_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/view_item_users_empty"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="나이 : 123" />
+
+        <TextView
+            android:id="@+id/tv_item_users_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/teal_700"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_item_users_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_item_users_age"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_users_age"
+            tools:text="휴대전화 : 010-4005-5015" />
+
+        <TextView
+            android:id="@+id/tv_item_users_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/teal_700"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_item_users_phone"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_users_phone"
+            tools:text="주소 : 경기도 부천시 조마루로 271 아무주소 아무주소 아무주소 아무주소 아무주소" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
