@@ -6,10 +6,14 @@ import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.lgcns.tct_template.data.DataSource
+import com.lgcns.tct_template.data.TctPreference
 import com.lgcns.tct_template.data.model.UserData
 import com.lgcns.tct_template.databinding.ActivityMainBinding
 import com.lgcns.tct_template.presentation.adapter.UserListAdapter
-import logcat.logcat
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         UserListAdapter()
     }
 
+    private val tctPreference by lazy { TctPreference(this.applicationContext) }
+
     private val rowClickListener: (position: Int, eventType: UserListAdapter.EventType, item: UserData) -> Unit =
         { position, eventType, item ->
-            logcat { "click position : $position, eventType: $eventType, item: $item" }
+            Timber.e("click position : $position, eventType: $eventType, item: $item")
             if (eventType == UserListAdapter.EventType.PROFILE) {
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.USER_ID_ARGS, item.id)
@@ -31,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         setUpViews()
         setUpObservers()
@@ -51,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpObservers() {
         viewModel.userListResponse.observe(this) {
-            logcat { it.toString() }
+            Timber.e(it.toString())
             adapter.setItems(it.userList)
         }
     }

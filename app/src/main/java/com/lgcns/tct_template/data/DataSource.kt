@@ -3,16 +3,16 @@ package com.lgcns.tct_template.data
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import logcat.logcat
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import timber.log.Timber
 
 @OptIn(ExperimentalSerializationApi::class)
 object DataSource {
 
-    private val customJson = Json {
+    val customJson = Json {
         ignoreUnknownKeys = true
         encodeDefaults = true
         isLenient = true
@@ -22,7 +22,7 @@ object DataSource {
     private val client = OkHttpClient.Builder()
         .addInterceptor(
             HttpLoggingInterceptor { message ->
-                logcat { message }
+                Timber.e(message)
             }.apply {
                 this.setLevel(HttpLoggingInterceptor.Level.BODY)
             }
